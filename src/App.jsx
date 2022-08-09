@@ -3,7 +3,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 // import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Routes, Route } from 'react-router-dom';
 import Dashboard from 'views/dashboard';
-import Modal from './views/modal';
+import TestModal from './views/modal';
 import theme from './style/theme';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
     <ChakraProvider theme={theme}>
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="testModal" element={<Modal />} />
+        <Route path="testModal" element={<TestModal />} />
       </Routes>
     </ChakraProvider>
   );

@@ -1,12 +1,15 @@
 import React from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
+import EditTask from 'components/Modal/editTask';
+import CreateTask from 'components/Modal/createTask';
 
-function Modal() {
+function TestModal() {
   return (
     <Box>
-      <Text>Ini Modal</Text>
+      <EditTask />
+      <CreateTask />
     </Box>
   );
 }
 
-export default Modal;
+export default TestModal;
