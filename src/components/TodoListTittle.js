@@ -23,6 +23,7 @@ function TodoListTittle({ todos, deleteTodo }) {
     >
 
       <Heading as="h3" size="lg">TODO List</Heading>
+      
       <HStack>
         <Button colorScheme="gray" color='gray' variant="outline" size="sm">
           Filter

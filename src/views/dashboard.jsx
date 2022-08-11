@@ -7,7 +7,6 @@ import {
 import Navbar from 'components/Navbar';
 import TodoList from 'components/TodoList';
 import AddTodo from 'components/AddTodo';
-import TodoListTittle from 'components/TodoListTittle';
 
 function Dashboard() {
 //   const initialTodos = [
@@ -38,20 +37,15 @@ function Dashboard() {
     setTodos([...todos, todo]);
   };
 
-  const moveTodo = (id) => {
-    setTodos([...todos, id]);
-  };
-
   return (
     <Box textAlign="left" fontSize="xl">
       <Grid minH="100vh" p={3}>
-        <VStack spacing={8}>
+        <VStack spacing={5}>
 
           <Navbar />
-
-          <TodoListTittle />
-          <TodoList todos={todos} deleteTodo={deleteTodo} />
           <AddTodo addTodo={addTodo} />
+          <TodoList todos={todos} deleteTodo={deleteTodo} />
+          
         </VStack>
       </Grid>
     </Box>
