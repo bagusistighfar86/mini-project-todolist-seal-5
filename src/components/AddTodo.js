@@ -41,8 +41,7 @@ function AddTodo({ addTodo }) {
       spacing={5}
       align="stretch"
     >
-    <Box p={2}>
-    </Box>
+
       <Heading as="h3" size="lg">TODO List</Heading>
       
     <form onSubmit={handleSubmit}>
