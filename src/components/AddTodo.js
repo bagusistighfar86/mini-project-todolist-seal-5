@@ -35,12 +35,12 @@ function AddTodo({ addTodo }) {
       <HStack mt="8">
         <Input
           variant="filled"
-          placeholder="learning chakraui with todo app"
+          placeholder="Sementara masukinnya disini"
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
-        <Button colorScheme="pink" px="8" type="submit">
-          Add Todo
+        <Button colorScheme="orange" px="8" type="submit">
+          Create
         </Button>
       </HStack>
     </form>
