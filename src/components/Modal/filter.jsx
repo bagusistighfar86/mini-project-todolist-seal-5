@@ -1,14 +1,14 @@
 import React from 'react';
 import {
-  Box, Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure,
+  Box, Button, Flex, FormControl, Heading, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure,
 } from '@chakra-ui/react';
 
-function CreateTask() {
+function Filter() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Box>
-      <Button onClick={onOpen}>Create Task</Button>
+      <Button onClick={onOpen}>Filter</Button>
 
       <Modal closeOnOverlayClick={false} onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay
@@ -16,23 +16,15 @@ function CreateTask() {
           backdropFilter="blur(10px) hue-rotate(90deg)"
         />
         <ModalContent position="relative" py={3} px={1}>
-          <ModalHeader color="text.secondary">Create Task</ModalHeader>
+          <ModalHeader color="text.secondary">Filter</ModalHeader>
           <ModalCloseButton bg="#9d9d9d" color="text.white" borderRadius="50px" position="absolute" top="-10px" right="-10px" _hover={{ bg: '#9d9d9d' }} />
           <ModalBody>
+            <Heading mb={6}>Tanggal</Heading>
             <FormControl color="text.secondary">
-              <FormLabel>Nama</FormLabel>
-              <Input type="text" />
-            </FormControl>
-            <FormControl color="text.secondary">
-              <FormLabel>Deskripsi</FormLabel>
-              <Input type="text" />
-            </FormControl>
-            <FormControl color="text.secondary">
-              <FormLabel>Tanggal & Waktu</FormLabel>
               <Input
                 placeholder="Select Date and Time"
                 size="md"
-                type="datetime-local"
+                type="date"
               />
             </FormControl>
           </ModalBody>
@@ -47,7 +39,7 @@ function CreateTask() {
                   bg: 'button.primaryHover',
                 }}
               >
-                Create Task
+                Save
               </Button>
             </Flex>
           </ModalFooter>
@@ -57,4 +49,4 @@ function CreateTask() {
   );
 }
 
-export default CreateTask;
+export default Filter;

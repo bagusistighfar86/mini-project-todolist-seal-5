@@ -24,8 +24,9 @@ const colors = {
   },
   button: {
     primary: '#FFBA00',
-    primaryHover: '#FFBA0080',
+    primaryHover: '#E1A400',
     secondary: '#E5E5E5',
+    secondaryHover: '#BFBFBF',
     red: '#FF4A26',
     transparentBasic: '#F7F8F8',
     transparentWarning: '#FFFAED',

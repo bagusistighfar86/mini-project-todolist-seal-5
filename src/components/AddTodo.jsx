@@ -1,7 +1,7 @@
+import React, { useState } from 'react';
 import {
   Button, HStack, Input, useToast,
 } from '@chakra-ui/react';
-import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
 function AddTodo({ addTodo }) {
