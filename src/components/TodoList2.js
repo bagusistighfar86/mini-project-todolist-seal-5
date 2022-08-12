@@ -69,7 +69,7 @@ function TodoList2({ todos, deleteTodo }) {
             
             <Spacer />
             <IconButton
-              icon={<CheckIcon />}
+              icon={<CloseIcon />}
               isRound="true"
               onClick={() => deleteTodo(todo.id)}
             />
