@@ -3,9 +3,7 @@ import { Box } from '@chakra-ui/react';
 
 function Calendar() {
   return (
-    <Box>
-
-    </Box>
+    <Box />
   );
 }
 

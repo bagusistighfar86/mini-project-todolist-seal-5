@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import {
   Button, HStack, Input, useToast,
+  VStack,
+  Spacer,
+  Heading,
+  Box,
+  Text, SimpleGrid,
 } from '@chakra-ui/react';
 import { nanoid } from 'nanoid';
 
@@ -31,19 +36,45 @@ function AddTodo({ addTodo }) {
   const [content, setContent] = useState('');
 
   return (
-    <form onSubmit={handleSubmit}>
-      <HStack mt="8">
-        <Input
-          variant="filled"
-          placeholder="learning chakraui with todo app"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-        <Button colorScheme="pink" px="8" type="submit">
-          Add Todo
-        </Button>
-      </HStack>
-    </form>
+    <VStack
+      w="70%"
+      spacing={5}
+      align="stretch"
+    >
+      <Box p={2} />
+      <Heading as="h3" size="lg">TODO List</Heading>
+
+      <form onSubmit={handleSubmit}>
+        <HStack>
+          <Input
+            size="sm"
+            htmlSize={4}
+            width="auto"
+            textAlign="center"
+            placeholder="Filter"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+          <Spacer />
+          <Button colorScheme="orange" bg="#FFBA00" size="sm" type="submit">
+            Create
+          </Button>
+        </HStack>
+        <Box p={2} />
+        <SimpleGrid columns={2} spacing={150}>
+
+          <Box align="center" size="xs" p={1} borderRadius="md" bg="gray.100" color="black" width="90px" height="25px">
+            <Text fontSize="xs">Uncomplete</Text>
+          </Box>
+
+          <Box align="center" size="xs" p={1} borderRadius="md" bg="orange.100" color="#FFBA00" width="90px" height="25px">
+            <Text fontSize="xs">Complete</Text>
+          </Box>
+
+        </SimpleGrid>
+      </form>
+
+    </VStack>
   );
 }
 

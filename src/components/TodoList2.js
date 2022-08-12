@@ -14,7 +14,7 @@ import {
   Stack,
 } from '@chakra-ui/react';
 
-function TodoList({ todos, addTodo }) {
+function TodoList2({ todos, deleteTodo }) {
   if (!todos.length) {
     return (
       <VStack spacing={140}>
@@ -69,9 +69,9 @@ function TodoList({ todos, addTodo }) {
 
               <Spacer />
               <IconButton
-                icon={<CheckIcon />}
+                icon={<CloseIcon />}
                 isRound="true"
-                onClick={() => addTodo(todo)}
+                onClick={() => deleteTodo(todo.id)}
               />
             </HStack>
           </VStack>
@@ -84,4 +84,4 @@ function TodoList({ todos, addTodo }) {
   );
 }
 
-export default TodoList;
+export default TodoList2;

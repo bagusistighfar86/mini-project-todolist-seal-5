@@ -3,23 +3,14 @@ import {
   Box,
   VStack,
   Grid,
+  SimpleGrid,
 } from '@chakra-ui/react';
 import Navbar from 'components/Navbar';
 import TodoList from 'components/TodoList';
 import AddTodo from 'components/AddTodo';
+import TodoList2 from 'components/TodoList2';
 
 function Dashboard() {
-//   const initialTodos = [
-//     {
-//       id: 1,
-//       body: 'get bread',
-//     },
-//     {
-//       id: 2,
-//       body: 'get butter',
-//     },
-//   ];
-
   const [todos, setTodos] = useState(
     () => JSON.parse(localStorage.getItem('todos')) || [],
   );
@@ -27,6 +18,14 @@ function Dashboard() {
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
+
+  const [todos2, setTodos2] = useState(
+    () => JSON.parse(localStorage.getItem('todos2')) || [],
+  );
+
+  useEffect(() => {
+    localStorage.setItem('todos2', JSON.stringify(todos2));
+  }, [todos2]);
 
   const deleteTodo = (id) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
@@ -36,14 +35,22 @@ function Dashboard() {
   const addTodo = (todo) => {
     setTodos([...todos, todo]);
   };
+  const addTodo2 = (todo2) => {
+    setTodos([...todos, todo2]);
+  };
 
   return (
-    <Box textAlign="center" fontSize="xl">
+    <Box textAlign="left" fontSize="xl">
       <Grid minH="100vh" p={3}>
-        <VStack spacing={8}>
+        <VStack spacing={3}>
+
           <Navbar />
-          <TodoList todos={todos} deleteTodo={deleteTodo} />
           <AddTodo addTodo={addTodo} />
+          <SimpleGrid columns={2} spacing={150}>
+            <TodoList todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} />
+            <TodoList2 todos={todos} deleteTodo={deleteTodo} />
+          </SimpleGrid>
+
         </VStack>
       </Grid>
     </Box>
