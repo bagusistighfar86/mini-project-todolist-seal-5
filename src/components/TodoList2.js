@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 
 
-function TodoList({ todos, addTodo }) {
+function TodoList2({ todos, deleteTodo }) {
   if (!todos.length) {
     return (
       <VStack spacing={140}>
@@ -58,7 +58,7 @@ function TodoList({ todos, addTodo }) {
             <Text></Text>
             <Heading as='h6' size='xs'>Progres</Heading>
             <Stack spacing={5}>
-              <Progress  colorScheme='orange' size='lg' value={20} />
+              <Progress colorScheme='orange' size='lg' value={20} />
             </Stack>
             <HStack>
             <CalendarIcon w={4} h={4} color='#FFBA00'/>
@@ -71,7 +71,7 @@ function TodoList({ todos, addTodo }) {
             <IconButton
               icon={<CheckIcon />}
               isRound="true"
-              onClick={() => addTodo(todo)}
+              onClick={() => deleteTodo(todo.id)}
             />
           </HStack>
           </VStack>
@@ -84,4 +84,4 @@ function TodoList({ todos, addTodo }) {
   );
 }
 
-export default TodoList;
+export default TodoList2;

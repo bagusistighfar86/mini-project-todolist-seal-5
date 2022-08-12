@@ -11,7 +11,7 @@ function Navbar() {
     >
       <Box w="97%" p={2}>
         <HStack>
-          <Image src="logo-png" width="30" height="10" />
+          <Image src="logo-seal.png" width="30" height="10" />
           <Spacer />
           <Heading as="h6" size="sm">Daffa Wijaya</Heading>
         </HStack>
