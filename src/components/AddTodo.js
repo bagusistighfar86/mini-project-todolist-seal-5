@@ -41,7 +41,8 @@ function AddTodo({ addTodo }) {
       spacing={5}
       align="stretch"
     >
-
+ <Box p={2}>
+      </Box>
       <Heading as="h3" size="lg">TODO List</Heading>
       
     <form onSubmit={handleSubmit}>
@@ -56,10 +57,24 @@ function AddTodo({ addTodo }) {
           onChange={(e) => setContent(e.target.value)}
         />
         <Spacer />
-        <Button colorScheme="orange" size="sm" type='submit'>
+        <Button colorScheme="orange" bg='#FFBA00' size="sm" type='submit'>
           Create
         </Button>
       </HStack>
+      <Box p={2}>
+      </Box>
+      <SimpleGrid columns={2} spacing={150}>
+
+
+      <Box align='center' size='xs' p={1} borderRadius='md' bg='gray.100' color='black' width='90px' height='25px'>
+      <Text fontSize='xs'>Uncomplete</Text>
+      </Box>
+
+      <Box align='center' size='xs' p={1} borderRadius='md' bg='orange.100' color='#FFBA00' width='90px' height='25px'>
+      <Text fontSize='xs'>Complete</Text>
+      </Box>
+
+</SimpleGrid>
     </form>
     
     </VStack>
