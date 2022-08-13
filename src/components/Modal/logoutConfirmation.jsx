@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import {
-  Box, Button, Center, Flex, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Text, useDisclosure,
+  Box, Button, Flex, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Text, useDisclosure,
 } from '@chakra-ui/react';
 
 function LogoutConfirmation() {
@@ -9,9 +9,11 @@ function LogoutConfirmation() {
 
   return (
     <Box>
-      <Button leftIcon={<ArrowBackIcon />} onClick={onOpen} bg="ffffff" width="90px" height="25px" size="sm" color='red'>
-            Logout
-          </Button>
+          <Button onClick={onOpen}
+    bg ='white' color='red'
+    leftIcon={<ArrowBackIcon />}>
+      <Text fontSize="sm">Logout</Text>
+      </Button>
 
       <Modal closeOnOverlayClick={false} onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay
