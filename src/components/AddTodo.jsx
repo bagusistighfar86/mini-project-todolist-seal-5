@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import CreateTask from './Modal/createTask';
-import Filter from './Modal/filter';
-
 import {
-  Button, HStack, Input, useToast,
+  HStack, useToast,
   VStack,
   Spacer,
   Heading,
@@ -11,9 +8,11 @@ import {
   Text, SimpleGrid,
 } from '@chakra-ui/react';
 import { nanoid } from 'nanoid';
+import CreateTask from './Modal/createTask';
+import Filter from './Modal/filter';
 
 function AddTodo({ addTodo }) {
-  const [content, setContent ] = useState('');
+  const [content, setContent] = useState('');
   const toast = useToast();
 
   function handleSubmit(e) {
@@ -47,7 +46,7 @@ function AddTodo({ addTodo }) {
 
       <form onSubmit={handleSubmit}>
         <HStack>
-        {/* <Input
+          {/* <Input
           size='sm'
           htmlSize={4}
           width='auto'
@@ -56,7 +55,7 @@ function AddTodo({ addTodo }) {
           value={content}
           onChange={(e) => setContent(e.target.value)}
         /> */}
-        <Filter />
+          <Filter />
           <Spacer />
           <CreateTask />
         </HStack>

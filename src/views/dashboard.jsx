@@ -35,9 +35,6 @@ function Dashboard() {
   const addTodo = (todo) => {
     setTodos([...todos, todo]);
   };
-  const addTodo2 = (todo2) => {
-    setTodos([...todos, todo2]);
-  };
 
   return (
     <Box textAlign="left" fontSize="xl">
@@ -46,13 +43,12 @@ function Dashboard() {
 
           <Navbar />
           <VStack w="70%">
-          <AddTodo addTodo={addTodo} />
-          <SimpleGrid columns={2} spacing={150}>
-            <TodoList todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} />
-            <TodoList2 todos={todos} deleteTodo={deleteTodo} />
-          </SimpleGrid>
+            <AddTodo addTodo={addTodo} />
+            <SimpleGrid columns={2} spacing={150}>
+              <TodoList todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} />
+              <TodoList2 todos={todos} deleteTodo={deleteTodo} />
+            </SimpleGrid>
           </VStack>
-          
 
         </VStack>
       </Grid>
