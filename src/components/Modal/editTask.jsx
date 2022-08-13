@@ -1,6 +1,7 @@
 import React from 'react';
+import { EditIcon } from '@chakra-ui/icons';
 import {
-  Box, Button, Checkbox, CheckboxGroup, Flex, FormControl, FormLabel, Heading, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, VStack,
+  Box, Button, Checkbox, IconButton, CheckboxGroup, Flex, FormControl, FormLabel, Heading, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, VStack,
 } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 
@@ -9,8 +10,11 @@ function EditTask() {
 
   return (
     <Box>
-      <Button onClick={onOpen}>Edit Task</Button>
-
+      <IconButton onClick={onOpen}
+                icon={<EditIcon w={4} h={4}/>}
+                isRound="true" bg='white' h={7}
+              />
+    
       <Modal closeOnOverlayClick={false} onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay
           bg="blackAlpha.300"

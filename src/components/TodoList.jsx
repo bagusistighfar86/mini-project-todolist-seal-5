@@ -1,5 +1,6 @@
 import React from 'react';
-import { CheckIcon, CloseIcon, CalendarIcon } from '@chakra-ui/icons';
+import EditTask from './Modal/editTask';
+import { CheckIcon, EditIcon, CalendarIcon } from '@chakra-ui/icons';
 import {
   HStack,
   VStack,
@@ -29,7 +30,6 @@ function TodoList({ todos, addTodo }) {
 
   return (
     <VStack
-
       spacing={3}
       align="stretch"
     >
@@ -40,9 +40,7 @@ function TodoList({ todos, addTodo }) {
         align="stretch"
       >
 
-        {todos.map((todo) => (
           <VStack
-            divider={<StackDivider />}
             borderColor="gray.100"
             borderWidth="2px"
             p="4"
@@ -50,15 +48,15 @@ function TodoList({ todos, addTodo }) {
             w="100%"
             alignItems="stretch"
           >
-            <HStack key={todo.id} align="stretch">
+            <HStack align="stretch">
               <VStack align="stretch" spacing={3}>
 
-                <Heading as="h4" size="md">{todo.body}</Heading>
+                <Heading as="h4" size="md">Membuat UI/UX Design untuk SEAL</Heading>
                 <Text fontSize="xs">Membuat UI/UX design untuk website todo list app untuk hari kamis</Text>
                 <Text />
                 <Heading as="h6" size="xs">Progres</Heading>
                 <Stack spacing={5}>
-                  <Progress colorScheme="orange" size="lg" value={20} />
+                  <Progress colorScheme="schemeYellow" size="lg" value={20} />
                 </Stack>
                 <HStack>
                   <CalendarIcon w={4} h={4} color="#FFBA00" />
@@ -66,16 +64,19 @@ function TodoList({ todos, addTodo }) {
                 </HStack>
 
               </VStack>
-
               <Spacer />
-              <IconButton
+              <VStack>
+                <IconButton
                 icon={<CheckIcon />}
                 isRound="true"
                 onClick={() => addTodo(todo)}
               />
+              <Spacer/>
+              <EditTask/>
+              </VStack>
+              
             </HStack>
           </VStack>
-        ))}
       </VStack>
 
       //bagi 2 duls

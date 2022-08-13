@@ -1,4 +1,5 @@
 import React from 'react';
+import { AddIcon } from '@chakra-ui/icons';
 import {
   Box, Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure,
 } from '@chakra-ui/react';
@@ -7,8 +8,11 @@ function CreateTask() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
+    
     <Box>
-      <Button onClick={onOpen}>Create Task</Button>
+      <Button rightIcon={<AddIcon />} colorScheme="orange" bg="#FFBA00" size="sm" type="submit" onClick={onOpen}>
+            Create
+          </Button>
 
       <Modal closeOnOverlayClick={false} onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay
