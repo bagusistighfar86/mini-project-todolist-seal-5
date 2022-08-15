@@ -9,10 +9,13 @@ function LogoutConfirmation() {
 
   return (
     <Box>
-          <Button onClick={onOpen}
-    bg ='white' color='red'
-    leftIcon={<ArrowBackIcon />}>
-      <Text fontSize="sm">Logout</Text>
+      <Button
+        onClick={onOpen}
+        bg="white"
+        color="red"
+        leftIcon={<ArrowBackIcon />}
+      >
+        <Text fontSize="sm">Logout</Text>
       </Button>
 
       <Modal closeOnOverlayClick={false} onClose={onClose} isOpen={isOpen} isCentered>

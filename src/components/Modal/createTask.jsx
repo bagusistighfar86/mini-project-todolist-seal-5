@@ -8,11 +8,11 @@ function CreateTask() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    
+
     <Box>
       <Button rightIcon={<AddIcon />} colorScheme="orange" bg="#FFBA00" size="sm" type="submit" onClick={onOpen}>
-            Create
-          </Button>
+        Create
+      </Button>
 
       <Modal closeOnOverlayClick={false} onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay

@@ -8,12 +8,13 @@ function DeleteTaskConfirmation() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    
+
     <Box>
       <IconButton
-      onClick={onOpen}
-                icon={<CloseIcon />}
-                isRound="true"/>
+        onClick={onOpen}
+        icon={<CloseIcon />}
+        isRound="true"
+      />
 
       <Modal closeOnOverlayClick={false} onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay

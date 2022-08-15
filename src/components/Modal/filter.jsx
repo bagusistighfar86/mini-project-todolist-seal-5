@@ -8,9 +8,9 @@ function Filter() {
 
   return (
     <Box>
-      <Button bg="white" variant='outline' size="sm" type="submit" onClick={onOpen}>
-            Filter
-          </Button>
+      <Button bg="white" variant="outline" size="sm" type="submit" onClick={onOpen}>
+        Filter
+      </Button>
 
       <Modal closeOnOverlayClick={false} onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay
