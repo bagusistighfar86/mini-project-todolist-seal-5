@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  useToast,
   Image,
   VStack,
   FormControl,
@@ -11,12 +12,17 @@ import {
   Button,
 
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+// import jwt from 'jwt-decode';
 import logo from '../assets/logo-seal.png';
 
 function RegisterForm() {
+  const toast = useToast();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // const [name, setName] = useState('');
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -26,13 +32,33 @@ function RegisterForm() {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    console.log(JSON.stringify({ email, password }));
-  };
   const emailError = email === '';
   const passwordError = password === '' || password.length < 8;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = {
+      email,
+      password,
+    };
+    await axios.post('user/login/', data).then(
+      (res) => {
+        localStorage.setItem('user', JSON.stringify(res.data.token));
+        // const user = jwt(`${localStorage.getItem('user')}`);
+        // setName(user.user.name);
+
+        console.log(`${localStorage.getItem('user')}`);
+        navigate('/');
+      },
+
+    ).catch(() => {
+      toast({
+        title: 'Invalid email or password',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+      });
+    });
+  };
 
   return (
     <div>
@@ -59,7 +85,7 @@ function RegisterForm() {
             )}
           </FormControl>
 
-          <Button disabled={!email || !password || password.length < 8} mb="43px" mt="30px" type="submit" colorScheme="orange" color="white" w="full">Login</Button>
+          <Button disabled={!email || !password || password.length < 8} mb="43px" mt="30px" type="submit" colorScheme="schemeYellow" color="white" w="full">Login</Button>
 
         </form>
         <Text color="#718096">
@@ -71,6 +97,7 @@ function RegisterForm() {
             </Text>
 
           </Link>
+
         </Text>
 
       </VStack>
