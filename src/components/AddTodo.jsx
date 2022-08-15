@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import {
-  HStack, useToast,
+  HStack,
+  useToast,
   VStack,
   Spacer,
   Heading,
   Box,
-  Text, SimpleGrid,
+  Text,
+  SimpleGrid,
 } from '@chakra-ui/react';
-import { nanoid } from 'nanoid';
 import CreateTask from './Modal/createTask';
 import Filter from './Modal/filter';
 
-function AddTodo({ addTodo }) {
+function AddTodo() {
   const [content, setContent] = useState('');
   const toast = useToast();
 
@@ -27,12 +28,6 @@ function AddTodo({ addTodo }) {
       return;
     }
 
-    const todo = {
-      id: nanoid(),
-      body: content,
-    };
-
-    addTodo(todo);
     setContent('');
   }
 
@@ -42,6 +37,7 @@ function AddTodo({ addTodo }) {
       spacing={5}
       align="stretch"
     >
+      <Box p={2} />
       <Heading as="h3" size="lg">TODO List</Heading>
 
       <form onSubmit={handleSubmit}>

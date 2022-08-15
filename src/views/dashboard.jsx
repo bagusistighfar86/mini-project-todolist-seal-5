@@ -19,14 +19,6 @@ function Dashboard() {
     localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
 
-  const [todos2, setTodos2] = useState(
-    () => JSON.parse(localStorage.getItem('todos2')) || [],
-  );
-
-  useEffect(() => {
-    localStorage.setItem('todos2', JSON.stringify(todos2));
-  }, [todos2]);
-
   const deleteTodo = (id) => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     setTodos(newTodos);
@@ -42,7 +34,7 @@ function Dashboard() {
         <VStack spacing={3}>
 
           <Navbar />
-          <VStack w="70%">
+          <VStack w="70%" spacing={3}>
             <AddTodo addTodo={addTodo} />
             <SimpleGrid columns={2} spacing={150}>
               <TodoList todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} />
