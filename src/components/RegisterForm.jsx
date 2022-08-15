@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  useToast,
   Image,
   VStack,
   FormControl,
@@ -12,9 +13,13 @@ import {
   Button,
 
 } from '@chakra-ui/react';
+
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 import logo from '../assets/logo-seal.png';
 
 function RegisterForm() {
+  const toast = useToast();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -33,8 +38,34 @@ function RegisterForm() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(JSON.stringify({ name, email, password }));
+    const data = {
+      name,
+      email,
+      password,
+    };
+
+    await axios.post('user/register/', data).then(
+      () => {
+        toast({
+          title: 'Account created.',
+          description: 'User Created',
+          duration: 5000,
+          isClosable: true,
+        });
+        setName('');
+        setEmail('');
+        setPassword('');
+      },
+    ).catch(() => {
+      toast({
+        title: 'Email has been taken',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+      });
+    });
   };
+
   const nameError = name === '';
   const emailError = email === '';
   const passwordError = password === '' || password.length < 8;
@@ -88,10 +119,21 @@ function RegisterForm() {
               </Text>
             </Text>
           </Checkbox>
-          <Button disabled={!name || !email || !password || password.length < 8 || !checkbox} type="submit" colorScheme="orange" color="white" w="full">Register</Button>
+
+          <Button disabled={!name || !email || !password || password.length < 8 || !checkbox} type="submit" colorScheme="schemeYellow" color="white" w="full">Register</Button>
 
         </form>
+        <Text color="#718096" pt="6">
+          Already have an account?
+          <Link to="/login">
+            {' '}
+            <Text as="span" color="#FFBA00">
+              Login here
+            </Text>
 
+          </Link>
+
+        </Text>
       </VStack>
 
     </div>
