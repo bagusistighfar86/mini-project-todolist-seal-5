@@ -1,18 +1,19 @@
 import React from 'react';
+import { CheckIcon, CloseIcon, CalendarIcon } from '@chakra-ui/icons';
 import {
-  Box, Button, Center, Flex, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Text, useDisclosure,
+  Box, Button, IconButton, Flex, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Text, useDisclosure,
 } from '@chakra-ui/react';
 
 function DeleteTaskConfirmation() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
+    
     <Box>
-      <Button onClick={onOpen}>
-        <Center color="text.red">
-          <Text>Delete Task</Text>
-        </Center>
-      </Button>
+      <IconButton
+      onClick={onOpen}
+                icon={<CloseIcon />}
+                isRound="true"/>
 
       <Modal closeOnOverlayClick={false} onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay
