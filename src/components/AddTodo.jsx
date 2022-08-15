@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Button, HStack, Input, useToast,
+  HStack, useToast,
   VStack,
   Spacer,
   Heading,
@@ -8,8 +8,11 @@ import {
   Text, SimpleGrid,
 } from '@chakra-ui/react';
 import { nanoid } from 'nanoid';
+import CreateTask from './Modal/createTask';
+import Filter from './Modal/filter';
 
 function AddTodo({ addTodo }) {
+  const [content, setContent] = useState('');
   const toast = useToast();
 
   function handleSubmit(e) {
@@ -33,32 +36,28 @@ function AddTodo({ addTodo }) {
     setContent('');
   }
 
-  const [content, setContent] = useState('');
-
   return (
     <VStack
-      w="70%"
+      w="100%"
       spacing={5}
       align="stretch"
     >
-      <Box p={2} />
       <Heading as="h3" size="lg">TODO List</Heading>
 
       <form onSubmit={handleSubmit}>
         <HStack>
-          <Input
-            size="sm"
-            htmlSize={4}
-            width="auto"
-            textAlign="center"
-            placeholder="Filter"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
+          {/* <Input
+          size='sm'
+          htmlSize={4}
+          width='auto'
+          textAlign='center'
+          placeholder="Filter"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        /> */}
+          <Filter />
           <Spacer />
-          <Button colorScheme="orange" bg="#FFBA00" size="sm" type="submit">
-            Create
-          </Button>
+          <CreateTask />
         </HStack>
         <Box p={2} />
         <SimpleGrid columns={2} spacing={150}>
