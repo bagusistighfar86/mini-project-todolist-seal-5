@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import DeleteTaskConfirmation from './Modal/deleteTaskConfirmation';
 
-function TodoList2({ todos, deleteTodo }) {
+function TodoList2({ todos }) {
   if (!todos.length) {
     return (
       <VStack spacing={140}>
@@ -27,13 +27,9 @@ function TodoList2({ todos, deleteTodo }) {
 
   return (
     <VStack
-
       spacing={3}
       align="stretch"
     >
-
-      //bagi 2 duls
-
       <VStack
         align="stretch"
       >
@@ -69,8 +65,6 @@ function TodoList2({ todos, deleteTodo }) {
           </HStack>
         </VStack>
       </VStack>
-
-      //bagi 2 duls
     </VStack>
 
   );

@@ -1,21 +1,19 @@
 import React from 'react';
-import { CheckIcon, EditIcon, CalendarIcon } from '@chakra-ui/icons';
+import { CheckIcon, CalendarIcon } from '@chakra-ui/icons';
 import {
   HStack,
   VStack,
   Text,
   IconButton,
-  StackDivider,
   Spacer,
   Box,
   Heading,
-  SimpleGrid,
   Progress,
   Stack,
 } from '@chakra-ui/react';
 import EditTask from './Modal/editTask';
 
-function TodoList({ todos, addTodo }) {
+function TodoList({ todos }) {
   if (!todos.length) {
     return (
       <VStack spacing={140}>
@@ -33,8 +31,6 @@ function TodoList({ todos, addTodo }) {
       spacing={3}
       align="stretch"
     >
-
-      //bagi 2 duls
 
       <VStack
         align="stretch"
@@ -69,7 +65,7 @@ function TodoList({ todos, addTodo }) {
               <IconButton
                 icon={<CheckIcon />}
                 isRound="true"
-                onClick={() => addTodo(todo)}
+                // onClick={}
               />
               <Spacer />
               <EditTask />
@@ -78,8 +74,6 @@ function TodoList({ todos, addTodo }) {
           </HStack>
         </VStack>
       </VStack>
-
-      //bagi 2 duls
     </VStack>
 
   );

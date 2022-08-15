@@ -24,6 +24,7 @@ function RegisterForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [checkbox, setCheckbox] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -38,6 +39,7 @@ function RegisterForm() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const data = {
       name,
       email,
@@ -52,11 +54,14 @@ function RegisterForm() {
           duration: 5000,
           isClosable: true,
         });
+        setIsLoading(false);
         setName('');
         setEmail('');
         setPassword('');
       },
-    ).catch(() => {
+    ).catch((err) => {
+      console.log(err);
+      setIsLoading(false);
       toast({
         title: 'Email has been taken',
         status: 'warning',
@@ -120,7 +125,17 @@ function RegisterForm() {
             </Text>
           </Checkbox>
 
-          <Button disabled={!name || !email || !password || password.length < 8 || !checkbox} type="submit" colorScheme="schemeYellow" color="white" w="full">Register</Button>
+          <Button
+            isLoading={isLoading}
+            disabled={!name || !email || !password || password.length < 8 || !checkbox}
+            type="submit"
+            colorScheme="schemeYellow"
+            color="white"
+            w="full"
+          >
+            Register
+
+          </Button>
 
         </form>
         <Text color="#718096" pt="6">

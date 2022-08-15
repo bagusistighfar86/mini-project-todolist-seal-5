@@ -5,10 +5,10 @@ import {
   Grid,
   SimpleGrid,
 } from '@chakra-ui/react';
-import Navbar from 'components/Navbar';
 import TodoList from 'components/TodoList';
 import AddTodo from 'components/AddTodo';
 import TodoList2 from 'components/TodoList2';
+import Navbar from 'components/Navbar';
 
 function Dashboard() {
   const [todos, setTodos] = useState(

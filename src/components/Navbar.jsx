@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   Image, Button, Box, Spacer, Heading, VStack, HStack, Divider,
   Popover,
@@ -8,17 +8,21 @@ import {
 
 } from '@chakra-ui/react';
 import jwt from 'jwt-decode';
+import { useDispatch, useSelector } from 'react-redux';
+import { setToken } from 'reducer/userReducer';
+import logo from '../assets/logo-seal.png';
 import LogoutConfirmation from './Modal/logoutConfirmation';
 
-import logo from '../assets/logo-seal.png';
-
 function Navbar() {
-  const [name, setName] = useState('');
+  const dispatch = useDispatch();
+
+  const token = useSelector((state) => state.user.token);
 
   useEffect(() => {
-    const user = jwt(`${localStorage.getItem('user')}`);
-    setName(user.user.name);
-  });
+    const newToken = jwt(`${localStorage.getItem('user')}`);
+    dispatch(setToken(newToken));
+  }, []);
+
   return (
     <VStack
       w="100%"
@@ -29,7 +33,7 @@ function Navbar() {
           <Spacer />
           <Popover>
             <PopoverTrigger>
-              <Button bgColor="white"><Heading as="h6" size="sm">{name}</Heading></Button>
+              <Button bgColor="white"><Heading as="h6" size="sm">{token?.user?.name}</Heading></Button>
             </PopoverTrigger>
             <PopoverContent align="center" width="105px">
               <PopoverBody p={0}>

@@ -1,16 +1,30 @@
 import React from 'react';
-import { ArrowBackIcon } from '@chakra-ui/icons';
 import {
-  Box, Button, Flex, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Text, useDisclosure,
+  Box, Button, Flex, Heading, Modal, ModalBody,
+  ModalCloseButton, ModalContent, ModalOverlay, Text, useDisclosure,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
+import { ArrowBackIcon } from '@chakra-ui/icons';
+import { setToken } from 'reducer/userReducer';
+import { useDispatch } from 'react-redux/es/exports';
 
 function LogoutConfirmation() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleLogout = () => {
+    onOpen();
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    dispatch(setToken());
+    navigate('/login');
+  };
 
   return (
     <Box>
       <Button
-        onClick={onOpen}
+        onClick={handleLogout}
         bg="white"
         color="red"
         leftIcon={<ArrowBackIcon />}

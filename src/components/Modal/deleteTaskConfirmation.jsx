@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckIcon, CloseIcon, CalendarIcon } from '@chakra-ui/icons';
+import { CloseIcon } from '@chakra-ui/icons';
 import {
   Box, Button, IconButton, Flex, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Text, useDisclosure,
 } from '@chakra-ui/react';

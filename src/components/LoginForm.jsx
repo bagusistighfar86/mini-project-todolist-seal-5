@@ -22,7 +22,7 @@ function RegisterForm() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [name, setName] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -36,6 +36,7 @@ function RegisterForm() {
   const passwordError = password === '' || password.length < 8;
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const data = {
       email,
       password,
@@ -45,12 +46,12 @@ function RegisterForm() {
         localStorage.setItem('user', JSON.stringify(res.data.token));
         // const user = jwt(`${localStorage.getItem('user')}`);
         // setName(user.user.name);
-
-        console.log(`${localStorage.getItem('user')}`);
         navigate('/');
       },
 
-    ).catch(() => {
+    ).catch((err) => {
+      console.log(err);
+      setIsLoading(false);
       toast({
         title: 'Invalid email or password',
         status: 'warning',
@@ -85,7 +86,19 @@ function RegisterForm() {
             )}
           </FormControl>
 
-          <Button disabled={!email || !password || password.length < 8} mb="43px" mt="30px" type="submit" colorScheme="schemeYellow" color="white" w="full">Login</Button>
+          <Button
+            isLoading={isLoading}
+            disabled={!email || !password || password.length < 8}
+            mb="43px"
+            mt="30px"
+            type="submit"
+            colorScheme="schemeYellow"
+            color="white"
+            w="full"
+          >
+            Login
+
+          </Button>
 
         </form>
         <Text color="#718096">

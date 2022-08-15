@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-  Box, Button, Flex, FormControl, Heading, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure,
+  Box, Button, Flex, FormControl, Heading, Input, Modal,
+  ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure,
 } from '@chakra-ui/react';
 
 function Filter() {
