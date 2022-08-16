@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   HStack,
   useToast,
@@ -9,12 +9,22 @@ import {
   Text,
   SimpleGrid,
 } from '@chakra-ui/react';
+import jwt from 'jwt-decode';
+import { useDispatch, useSelector } from 'react-redux';
+import { setToken } from 'reducer/userReducer';
 import CreateTask from './Modal/createTask';
 import Filter from './Modal/filter';
 
-function AddTodo() {
+function AddTodo({ todos }) {
+  const dispatch = useDispatch();
   const [content, setContent] = useState('');
   const toast = useToast();
+  const token = useSelector((state) => state.user.token);
+
+  useEffect(() => {
+    const newToken = jwt(`${localStorage.getItem('user')}`);
+    dispatch(setToken(newToken));
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -31,6 +41,39 @@ function AddTodo() {
     setContent('');
   }
 
+  if (!todos.length) {
+    return (
+      <VStack>
+        <Box height="170px" />
+        <VStack
+          borderColor="gray.100"
+          borderWidth="2px"
+          p="7"
+          borderRadius="lg"
+          alignItems="center"
+        >
+          <HStack align="stretch">
+            <VStack align="center" spacing={1}>
+              <HStack spacing={1}>
+                <Heading as="h4" size="md">Hallo</Heading>
+                <Heading as="h4" size="md">{token?.user?.name}</Heading>
+              </HStack>
+              <Box height="7px" />
+              <Text fontSize="xs">TODO List masih kosong</Text>
+              <Text fontSize="xs">Ingin membuat TODO List?</Text>
+              <Box height="7px" />
+              <CreateTask />
+
+            </VStack>
+
+          </HStack>
+        </VStack>
+
+      </VStack>
+
+    );
+  }
+
   return (
     <VStack
       w="100%"
@@ -42,15 +85,6 @@ function AddTodo() {
 
       <form onSubmit={handleSubmit}>
         <HStack>
-          {/* <Input
-          size='sm'
-          htmlSize={4}
-          width='auto'
-          textAlign='center'
-          placeholder="Filter"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        /> */}
           <Filter />
           <Spacer />
           <CreateTask />

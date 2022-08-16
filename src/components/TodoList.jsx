@@ -6,7 +6,6 @@ import {
   Text,
   IconButton,
   Spacer,
-  Box,
   Heading,
   Progress,
   Stack,
@@ -15,15 +14,7 @@ import EditTask from './Modal/editTask';
 
 function TodoList({ todos }) {
   if (!todos.length) {
-    return (
-      <VStack spacing={140}>
-        <Box />
-
-        <Text>TODO List Kosong!</Text>
-
-      </VStack>
-
-    );
+    return ('');
   }
 
   return (
