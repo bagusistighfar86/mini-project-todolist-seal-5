@@ -35,7 +35,7 @@ function Dashboard() {
 
           <Navbar />
           <VStack w="70%" spacing={3}>
-            <AddTodo addTodo={addTodo} />
+            <AddTodo todos={todos} addTodo={addTodo} />
             <SimpleGrid columns={2} spacing={150}>
               <TodoList todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} />
               <TodoList2 todos={todos} deleteTodo={deleteTodo} />

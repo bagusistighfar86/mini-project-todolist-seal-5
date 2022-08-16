@@ -10,7 +10,17 @@ function CreateTask() {
   return (
 
     <Box>
-      <Button rightIcon={<AddIcon />} colorScheme="orange" bg="#FFBA00" size="sm" type="submit" onClick={onOpen}>
+      <Button
+        rightIcon={<AddIcon />}
+        colorScheme="orange"
+        bg="#FFBA00"
+        size="sm"
+        type="submit"
+        onClick={onOpen}
+        _hover={{
+          bg: 'button.primaryHover',
+        }}
+      >
         Create
       </Button>
 
