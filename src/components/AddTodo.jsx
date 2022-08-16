@@ -25,9 +25,7 @@ function AddTodo() {
         duration: 2000,
         isClosable: true,
       });
-      return;
     }
-
     setContent('');
   }
 
