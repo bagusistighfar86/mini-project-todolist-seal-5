@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  Image, Button, Box, Spacer, Heading, VStack, HStack, Divider,
+  Image, Box, Spacer, Heading, VStack, HStack, Divider,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -33,7 +33,7 @@ function Navbar() {
           <Spacer />
           <Popover>
             <PopoverTrigger>
-              <Button bgColor="white"><Heading as="h6" size="sm">{token?.user?.name}</Heading></Button>
+              <Box as="button" bgColor="white"><Heading as="h6" size="sm">{token?.user?.name}</Heading></Box>
             </PopoverTrigger>
             <PopoverContent align="center" width="105px">
               <PopoverBody p={0}>

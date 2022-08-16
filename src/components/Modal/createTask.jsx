@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { AddIcon } from '@chakra-ui/icons';
 import axios from 'axios';
 import {
-  Box, Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure,
+  useToast, Box, Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure,
 } from '@chakra-ui/react';
 
 function CreateTask() {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
@@ -22,30 +23,46 @@ function CreateTask() {
     setDue(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       name,
       desc,
       due_date: due,
     };
-    console.log(data);
-    console.log(token);
-    axios.post('task', data, {
+
+    await axios.post('task', data, {
       headers: {
         authorization: `bearer ${token}`,
       },
-    }).then((response) => {
-      console.log(response.data);
-    }).catch((error) => {
-      console.log(error);
+    }).then(() => {
+      toast({
+        title: 'List created.',
+        duration: 3000,
+        status: 'success',
+        isClosable: true,
+      });
+      setName('');
+      setDesc('');
+      setDue('');
+    }).catch(() => {
     });
   };
 
   return (
 
     <Box>
-      <Button rightIcon={<AddIcon />} colorScheme="orange" bg="#FFBA00" size="sm" type="submit" onClick={onOpen}>
+      <Button
+        rightIcon={<AddIcon />}
+        colorScheme="orange"
+        bg="#FFBA00"
+        size="sm"
+        type="submit"
+        onClick={onOpen}
+        _hover={{
+          bg: 'button.primaryHover',
+        }}
+      >
         Create
       </Button>
 
@@ -87,6 +104,7 @@ function CreateTask() {
                 color="text.white"
                 variant="solid"
                 onClick={handleSubmit}
+                disabled={!name || !desc || !due}
                 _hover={{
                   bg: 'button.primaryHover',
                 }}

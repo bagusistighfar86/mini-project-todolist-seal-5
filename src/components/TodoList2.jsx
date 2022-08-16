@@ -5,7 +5,6 @@ import {
   VStack,
   Text,
   Spacer,
-  Box,
   Heading,
   Progress,
   Stack,
@@ -14,15 +13,7 @@ import DeleteTaskConfirmation from './Modal/deleteTaskConfirmation';
 
 function TodoList2({ todos }) {
   if (!todos.length) {
-    return (
-      <VStack spacing={140}>
-        <Box />
-
-        <Text>TODO List Kosong!</Text>
-
-      </VStack>
-
-    );
+    return ('');
   }
 
   return (
