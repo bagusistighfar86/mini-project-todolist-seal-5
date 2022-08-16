@@ -55,12 +55,12 @@ function AddTodo({ todos }) {
           <HStack align="stretch">
             <VStack align="center" spacing={1}>
               <HStack spacing={1}>
-                <Heading as="h4" size="md">Hallo</Heading>
+                <Heading as="h4" size="md">Welcome</Heading>
                 <Heading as="h4" size="md">{token?.user?.name}</Heading>
               </HStack>
               <Box height="7px" />
-              <Text fontSize="xs">TODO List masih kosong</Text>
-              <Text fontSize="xs">Ingin membuat TODO List?</Text>
+              <Text fontSize="xs">Data is empty</Text>
+              <Text fontSize="xs">Do you want to create new list??</Text>
               <Box height="7px" />
               <CreateTask />
 
