@@ -13,7 +13,6 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 import dateFormat, { masks } from 'dateformat';
-
 import EditTask from './Modal/editTask';
 
 function TodoList({ fetchTask, tasks }) {
