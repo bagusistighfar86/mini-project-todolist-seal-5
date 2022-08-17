@@ -23,6 +23,7 @@ function AddTodo({ fetchTask, tasks }) {
     const newToken = jwt(`${localStorage.getItem('user')}`);
     dispatch(setToken(newToken));
   }, []);
+
   if (tasks === null) {
     return 'Loading...';
   }

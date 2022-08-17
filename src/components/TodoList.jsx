@@ -60,7 +60,7 @@ function TodoList({ fetchTask, tasks }) {
                       isRound="true"
                     />
                     <Spacer />
-                    <EditTask />
+                    <EditTask taskId={task.id} />
                   </VStack>
 
                 </HStack>

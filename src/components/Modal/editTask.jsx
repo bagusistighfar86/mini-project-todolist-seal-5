@@ -3,8 +3,9 @@ import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import {
   Box, Button, Checkbox, IconButton, CheckboxGroup, Flex, FormControl, FormLabel, Heading, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, VStack,
 } from '@chakra-ui/react';
+import DeleteTaskConfirmation from './deleteTaskConfirmation';
 
-function EditTask() {
+function EditTask({ taskId }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -105,18 +106,7 @@ function EditTask() {
               >
                 Edit Task
               </Button>
-              <Button
-                variant="outline"
-                color="border.red"
-                borderColor="border.red"
-                _hover={{
-                  color: 'text.white',
-                  bg: 'button.red',
-                }}
-              >
-                <DeleteIcon />
-
-              </Button>
+              <DeleteTaskConfirmation taskId={taskId} />
             </Flex>
           </ModalFooter>
         </ModalContent>

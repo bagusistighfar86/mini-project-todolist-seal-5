@@ -5,7 +5,7 @@ import {
   useToast, Box, Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure,
 } from '@chakra-ui/react';
 
-function CreateTask() {
+function CreateTask({ fetchTask }) {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [name, setName] = useState('');
@@ -36,6 +36,7 @@ function CreateTask() {
         authorization: `bearer ${token}`,
       },
     }).then(() => {
+      fetchTask();
       toast({
         title: 'List created.',
         duration: 3000,
