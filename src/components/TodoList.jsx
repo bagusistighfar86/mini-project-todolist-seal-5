@@ -23,18 +23,19 @@ function TodoList({ fetchTask, tasks }) {
       tasks.map((task) => (
         <div key={task.id}>
           <VStack
+            w="100%"
             spacing={3}
             align="stretch"
           >
             <VStack
               align="stretch"
             >
+
               <VStack
                 borderColor="gray.100"
                 borderWidth="2px"
                 p="4"
                 borderRadius="lg"
-                w="100%"
                 alignItems="stretch"
               >
                 <HStack align="stretch">

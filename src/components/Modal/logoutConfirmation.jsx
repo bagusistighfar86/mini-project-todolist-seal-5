@@ -24,7 +24,7 @@ function LogoutConfirmation() {
   return (
     <Box>
       <Button
-        onClick={handleLogout}
+        onClick={onOpen}
         bg="white"
         color="red"
         leftIcon={<ArrowBackIcon />}
@@ -44,6 +44,7 @@ function LogoutConfirmation() {
             <Text color="black" fontWeight="500" mb={10} textAlign="center" fontSize="2xl">Are you sure want to log out?</Text>
             <Flex gap={3} w="100%">
               <Button
+                onClick={onClose}
                 w="full"
                 bg="button.secondary"
                 color="black"
@@ -55,6 +56,7 @@ function LogoutConfirmation() {
                 No
               </Button>
               <Button
+                onClick={handleLogout}
                 w="full"
                 bg="button.primary"
                 color="text.white"
