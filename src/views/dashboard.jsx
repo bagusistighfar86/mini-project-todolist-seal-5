@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
   Box,
@@ -25,6 +25,10 @@ function Dashboard() {
     });
   };
 
+  useEffect(() => {
+    fetchTask();
+  });
+
   return (
     <Box textAlign="left" fontSize="xl">
       <Grid minH="100vh" p={3}>
@@ -32,7 +36,7 @@ function Dashboard() {
           <Navbar />
           <VStack w="70%" spacing={3}>
             <AddTodo fetchTask={fetchTask} tasks={tasks} />
-            <SimpleGrid columns={2} spacing={150}>
+            <SimpleGrid columns={2} spacing={150} w="100%">
               <VStack>
                 <TodoList fetchTask={fetchTask} tasks={tasks} />
               </VStack>

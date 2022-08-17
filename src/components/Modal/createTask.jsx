@@ -20,6 +20,7 @@ function CreateTask({ fetchTask }) {
     setDesc(e.target.value);
   };
   const handleDueChange = (e) => {
+    console.log(e.target.value);
     setDue(e.target.value);
   };
 
@@ -37,8 +38,9 @@ function CreateTask({ fetchTask }) {
       },
     }).then(() => {
       fetchTask();
+      onClose();
       toast({
-        title: 'List created.',
+        title: 'List created',
         duration: 3000,
         status: 'success',
         isClosable: true,
@@ -47,6 +49,12 @@ function CreateTask({ fetchTask }) {
       setDesc('');
       setDue('');
     }).catch(() => {
+      toast({
+        title: 'List failed to create',
+        duration: 3000,
+        status: 'error',
+        isClosable: true,
+      });
     });
   };
 

@@ -1,12 +1,13 @@
 import React from 'react';
 import { DeleteIcon } from '@chakra-ui/icons';
 import {
-  Box, Button, Flex, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Text, useDisclosure,
+  Box, Button, Flex, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Text, useDisclosure, useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
 
 function DeleteTaskConfirmation({ taskId }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
 
   const token = JSON.parse(localStorage.getItem('user'));
   const deleteTask = async () => {
@@ -16,6 +17,19 @@ function DeleteTaskConfirmation({ taskId }) {
       },
     }).then(() => {
       onClose();
+      toast({
+        title: 'Delete Successed',
+        duration: 3000,
+        status: 'success',
+        isClosable: true,
+      });
+    }).catch(() => {
+      toast({
+        title: 'Delete Failed',
+        duration: 3000,
+        status: 'error',
+        isClosable: true,
+      });
     });
   };
 

@@ -1,12 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import {
-  Box, Button, Checkbox, IconButton, CheckboxGroup, Flex, FormControl, FormLabel, Heading, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, VStack,
+  Box, Button, Checkbox, IconButton, CheckboxGroup, Flex, FormControl, FormLabel, Heading, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, VStack, useToast,
 } from '@chakra-ui/react';
+import axios from 'axios';
 import DeleteTaskConfirmation from './deleteTaskConfirmation';
 
-function EditTask({ taskId }) {
+function EditTask({ task }) {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [name, setName] = useState(task.name);
+  const [desc, setDesc] = useState(task.desc);
+  // eslint-disable-next-line no-unused-vars
+  const [status, setStatus] = useState(task.status);
+  const [due, setDue] = useState(task.due_date.slice(0, task.due_date.length - 8));
+  const token = JSON.parse(localStorage.getItem('user'));
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+  const handleDescChange = (e) => {
+    setDesc(e.target.value);
+  };
+  const handleDueChange = (e) => {
+    console.log(e.target.value);
+    setDue(e.target.value);
+  };
+
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    const data = {
+      name,
+      desc,
+      status,
+      due_date: due,
+    };
+
+    await axios.put(`task/${task.id}`, data, {
+      headers: {
+        authorization: `bearer ${token}`,
+      },
+    }).then(() => {
+      // fetchTask();
+      onClose();
+      toast({
+        title: 'List has been edited',
+        duration: 3000,
+        status: 'success',
+        isClosable: true,
+      });
+      setName('');
+      setDesc('');
+      setDue('');
+    }).catch(() => {
+      toast({
+        title: 'List has been failed to edit',
+        duration: 3000,
+        status: 'error',
+        isClosable: true,
+      });
+    });
+  };
 
   return (
     <Box>
@@ -29,11 +83,19 @@ function EditTask({ taskId }) {
           <ModalBody>
             <FormControl color="text.secondary">
               <FormLabel>Nama</FormLabel>
-              <Input type="text" />
+              <Input
+                type="text"
+                defaultValue={task.name}
+                onChange={handleNameChange}
+              />
             </FormControl>
             <FormControl color="text.secondary">
               <FormLabel>Deskripsi</FormLabel>
-              <Input type="text" />
+              <Input
+                type="text"
+                defaultValue={task.desc}
+                onChange={handleDescChange}
+              />
             </FormControl>
             <FormControl color="text.secondary">
               <FormLabel>Tanggal & Waktu</FormLabel>
@@ -41,6 +103,8 @@ function EditTask({ taskId }) {
                 placeholder="Select Date and Time"
                 size="md"
                 type="datetime-local"
+                defaultValue={task.due_date.slice(0, task.due_date.length - 8)}
+                onChange={handleDueChange}
               />
             </FormControl>
             <Heading size="md" color="text.yellow" my={5}>+ Next Step</Heading>
@@ -103,10 +167,11 @@ function EditTask({ taskId }) {
                 _hover={{
                   bg: 'button.primaryHover',
                 }}
+                onClick={handleEdit}
               >
                 Edit Task
               </Button>
-              <DeleteTaskConfirmation taskId={taskId} />
+              <DeleteTaskConfirmation taskId={task.id} />
             </Flex>
           </ModalFooter>
         </ModalContent>
