@@ -51,6 +51,7 @@ function RegisterForm() {
         toast({
           title: 'Account created.',
           description: 'User Created',
+          status: 'success',
           duration: 5000,
           isClosable: true,
         });

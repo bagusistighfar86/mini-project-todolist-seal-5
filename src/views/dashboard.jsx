@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import {
   Box,
   VStack,
@@ -7,25 +8,21 @@ import {
 } from '@chakra-ui/react';
 import TodoList from 'components/TodoList';
 import AddTodo from 'components/AddTodo';
-import TodoList2 from 'components/TodoList2';
+// import TodoList2 from 'components/TodoList2';
 import Navbar from 'components/Navbar';
 
 function Dashboard() {
-  const [todos, setTodos] = useState(
-    () => JSON.parse(localStorage.getItem('todos')) || [],
-  );
+  const token = JSON.parse(localStorage.getItem('user'));
+  const [tasks, setTasks] = useState(null);
 
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
-
-  const deleteTodo = (id) => {
-    const newTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(newTodos);
-  };
-
-  const addTodo = (todo) => {
-    setTodos([...todos, todo]);
+  const fetchTask = () => {
+    axios.get('task', {
+      headers: {
+        authorization: `bearer ${token}`,
+      },
+    }).then((res) => {
+      setTasks(res.data.task);
+    });
   };
 
   return (
@@ -35,10 +32,10 @@ function Dashboard() {
 
           <Navbar />
           <VStack w="70%" spacing={3}>
-            <AddTodo todos={todos} addTodo={addTodo} />
+            <AddTodo fetchTask={fetchTask} tasks={tasks} />
             <SimpleGrid columns={2} spacing={150}>
-              <TodoList todos={todos} addTodo={addTodo} deleteTodo={deleteTodo} />
-              <TodoList2 todos={todos} deleteTodo={deleteTodo} />
+              <TodoList fetchTask={fetchTask} tasks={tasks} />
+              {/* <TodoList2 /> */}
             </SimpleGrid>
           </VStack>
 
