@@ -10,10 +10,14 @@ import TodoList from 'components/TodoList';
 import TodoList2 from 'components/TodoList2';
 import AddTodo from 'components/AddTodo';
 import Navbar from 'components/Navbar';
+import { useDispatch, useSelector } from 'react-redux';
+import { setRefresh } from 'reducer/userReducer';
 
 function Dashboard() {
+  const dispatch = useDispatch();
   const token = JSON.parse(localStorage.getItem('user'));
   const [tasks, setTasks] = useState(null);
+  const refresh = useSelector((state) => state.user.refresh);
 
   const fetchTask = () => {
     axios.get('task', {
@@ -22,12 +26,13 @@ function Dashboard() {
       },
     }).then((res) => {
       setTasks(res.data.task);
+      dispatch(setRefresh());
     });
   };
 
   useEffect(() => {
     fetchTask();
-  });
+  }, [refresh]);
 
   return (
     <Box textAlign="left" fontSize="xl">

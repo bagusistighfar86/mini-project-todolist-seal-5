@@ -4,9 +4,12 @@ import {
   Box, Button, Checkbox, IconButton, CheckboxGroup, Flex, FormControl, FormLabel, Heading, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, VStack, useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setRefresh } from 'reducer/userReducer';
 import DeleteTaskConfirmation from './deleteTaskConfirmation';
 
 function EditTask({ task }) {
+  const dispatch = useDispatch();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [name, setName] = useState(task.name);
@@ -41,7 +44,7 @@ function EditTask({ task }) {
         authorization: `bearer ${token}`,
       },
     }).then(() => {
-      // fetchTask();
+      dispatch(setRefresh(true));
       onClose();
       toast({
         title: 'List has been edited',

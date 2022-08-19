@@ -5,6 +5,7 @@ export const userSlicer = createSlice({
   name: 'user',
   initialState: {
     token: '',
+    refresh: false,
   },
   reducers: {
     setToken: (state, action) => {
@@ -14,8 +15,15 @@ export const userSlicer = createSlice({
         state.token = action.payload;
       }
     },
+    setRefresh: (state, action) => {
+      if (!action.payload) {
+        state.refresh = false;
+      } else {
+        state.refresh = action.payload;
+      }
+    },
   },
 });
 
-export const { setToken } = userSlicer.actions;
+export const { setToken, setRefresh } = userSlicer.actions;
 export default userSlicer.reducer;

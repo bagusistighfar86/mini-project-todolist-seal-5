@@ -8,6 +8,8 @@ import {
   Box,
   Text,
   SimpleGrid,
+  Center,
+  Spinner,
 } from '@chakra-ui/react';
 import { setToken } from 'reducer/userReducer';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,11 +27,24 @@ function AddTodo({ fetchTask, tasks }) {
   }, []);
 
   if (tasks === null) {
-    return 'Loading...';
+    return (
+      <Center w="100%" minH="calc(100vh - 115px)">
+        <VStack>
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+          <Text fontWeight="500" color="text.primary">Loading...</Text>
+        </VStack>
+      </Center>
+    );
   }
   if (tasks.length === 0) {
     return (
-      <VStack>
+      <Center w="100%" minH="calc(100vh - 115px)">
         <Box height="170px" />
         <VStack
           borderColor="gray.100"
@@ -48,14 +63,11 @@ function AddTodo({ fetchTask, tasks }) {
               <Text fontSize="xs">Data is empty</Text>
               <Text fontSize="xs">Do you want to create new list??</Text>
               <Box height="7px" />
-              <CreateTask fetchTask={fetchTask} />
-
+              <CreateTask fetchTask={fetchTask} tasks={tasks} />
             </VStack>
-
           </HStack>
         </VStack>
-
-      </VStack>
+      </Center>
 
     );
   }

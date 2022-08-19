@@ -4,8 +4,11 @@ import {
   Box, Button, Flex, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Text, useDisclosure, useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setRefresh } from 'reducer/userReducer';
 
 function DeleteTaskConfirmation({ taskId }) {
+  const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 
@@ -16,6 +19,7 @@ function DeleteTaskConfirmation({ taskId }) {
         authorization: `bearer ${token}`,
       },
     }).then(() => {
+      dispatch(setRefresh(true));
       onClose();
       toast({
         title: 'Delete Successed',

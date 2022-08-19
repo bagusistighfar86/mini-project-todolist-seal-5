@@ -12,10 +12,13 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import dateFormat, { masks } from 'dateformat';
+import { setRefresh } from 'reducer/userReducer';
 import EditTask from './Modal/editTask';
 
 function TodoList({ fetchTask, tasks }) {
+  const dispatch = useDispatch();
   const toast = useToast();
 
   const [token, setToken] = useState('');
@@ -46,8 +49,9 @@ function TodoList({ fetchTask, tasks }) {
         },
       },
     ).then(() => {
+      dispatch(setRefresh(true));
       toast({
-        title: 'List has been edited',
+        title: 'List has been completed',
         duration: 3000,
         status: 'success',
         isClosable: true,
@@ -55,7 +59,7 @@ function TodoList({ fetchTask, tasks }) {
       setReadyDone(false);
     }).catch(() => {
       toast({
-        title: 'List has been failed to edit',
+        title: 'Complete list failed to add',
         duration: 3000,
         status: 'error',
         isClosable: true,
